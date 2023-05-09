@@ -25,7 +25,10 @@ class GitHubPrivateReleaseDownloadStrategy < CurlDownloadStrategy
   private
 
   def _curl_args
-    args = ["-H", "Authorization: token #{@github_token}"]
+    args = [
+      "-H", "Authorization: token #{@github_token}",
+      "-H", "Accept: application/octet-stream",
+    ]
     args
   end
 
