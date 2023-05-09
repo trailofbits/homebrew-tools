@@ -6,20 +6,20 @@ require_relative "lib/private"
 class Cloudfuzz < Formula
   desc ""
   homepage "https://github.com/trailofbits/cloudfuzz"
-  version "0.0.9-SNAPSHOT-9075f8d"
+  version "0.0.12"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.9/cloudfuzz_darwin_arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "9a4660bf8d7912eae6de27b773f7e5ee5becf1f6b40b46ba8493195d7988625a"
+      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.12/cloudfuzz_darwin_arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "94b176dd95196e615bc225aa143c54f734508504bb15ce636b740740d69425a6"
 
       def install
         bin.install "cloudfuzz"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.9/cloudfuzz_darwin_x86_64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "c8ef7e0c78594a8c26683d6a1c827548816c0e0c3fb80848d6ce887410b5b268"
+      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.12/cloudfuzz_darwin_x86_64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "14b50fb778fe477e5dbab5368b7bc55fdd51fa5b2bd2807107fbb0d4bbb38d30"
 
       def install
         bin.install "cloudfuzz"
@@ -29,20 +29,24 @@ class Cloudfuzz < Formula
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.9/cloudfuzz_linux_arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "92a105ec33845f4c83075c8f7033ecde3f30c50d20ca2b4562b8629b42f5e516"
+      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.12/cloudfuzz_linux_arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "3433ebf0c5fd2dae208e7164365cf5c175614d07adfa4b9118d26e0c9aa88046"
 
       def install
         bin.install "cloudfuzz"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.9/cloudfuzz_linux_x86_64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "7ce6cd30fbbb60756d790cda9827f9fc163ea5e4ed94f0b13b7e0bcf87d931e2"
+      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.12/cloudfuzz_linux_x86_64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "f268a8f5bf694d8a624d5ca91ea55578a02a0c6d2a117c8aaa7f959f6734595b"
 
       def install
         bin.install "cloudfuzz"
       end
     end
+  end
+
+  test do
+    system "#{bin}/cloudfuzz version"
   end
 end
