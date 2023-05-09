@@ -17,25 +17,17 @@ class GitHubPrivateReleaseDownloadStrategy < CurlDownloadStrategy
 
     _, @owner, @repo, @tag, @filename = *@url.match(url_pattern)
   end
-
-  def sanitized_download_url
-    download_url.gsub(/\/\/.*@/, "//REDACTED@")
-  end
   
-  def download_url
-    "https://#{@github_token}@api.github.com/repos/#{@owner}/#{@repo}/releases/assets/#{asset_id}"
-  end
-
-  def fetch(timeout: nil, **options)
-    original_url = @url
-    @url = download_url
-    ohai "Downloading #{sanitized_download_url}"
-    super
-    @url = original_url
+  def url
+    "https://api.github.com/repos/#{@owner}/#{@repo}/releases/assets/#{asset_id}"
   end
 
   private
 
+  def _curl_args
+    args = ["-H", "Authorization: token #{@github_token}"]
+    args
+  end
 
   def set_github_token
     @github_token = get_github_token_from_keychain
