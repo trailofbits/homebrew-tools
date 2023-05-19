@@ -6,20 +6,20 @@ require_relative "lib/private"
 class Cloudfuzz < Formula
   desc ""
   homepage "https://github.com/trailofbits/cloudfuzz"
-  version "0.0.1"
+  version "0.0.2"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.1/cloudfuzz_darwin_x86_64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "85f933633f242be47afee93ce9f41807de31fd7e1130c4762541326c6d5a9ffa"
+      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.2/cloudfuzz-0.0.2-darwin-amd64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "dc3d4a0f63a84727977640a430ec84a011a6947dcdc04fcef25bfac98121a988"
 
       def install
         bin.install "cloudfuzz"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.1/cloudfuzz_darwin_arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "a23cca3e154c1aa648babdca98f1b0af76258e2c5fa0e615e68d3d8a8b562476"
+      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.2/cloudfuzz-0.0.2-darwin-arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "ec193de1788c7f80d1f6b80aa895271a85fc3910b0dc6b462e6c1ea1790b9b63"
 
       def install
         bin.install "cloudfuzz"
@@ -29,21 +29,34 @@ class Cloudfuzz < Formula
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.1/cloudfuzz_linux_x86_64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "e9c43bf87cf60841485ba657090729c626d3b1371d25ab9768c53600d94adbd4"
+      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.2/cloudfuzz-0.0.2-linux-amd64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "60c237e9b452dfc12dd9ed9e7638fe07711343dbd63199da323777ee3a070abc"
 
       def install
         bin.install "cloudfuzz"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.1/cloudfuzz_linux_arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "538eddc8aec6223742755bd15295357c15e4a8f6c658a2d246b2295a42a16b80"
+      url "https://github.com/trailofbits/cloudfuzz/releases/download/v0.0.2/cloudfuzz-0.0.2-linux-arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "19c5bc73a28858204f6aeccb44a2d2fc461b8e2b6465a80117328b0903cac683"
 
       def install
         bin.install "cloudfuzz"
       end
     end
+  end
+
+  def caveats
+    <<~EOS
+      CloudFuzz can optionally use the 1Password CLI for secure credential management.
+      To use this feature, you need to have the 1Password CLI installed.
+
+      To install the 1Password CLI, run:
+        brew install --cask 1password-cli
+
+      For more information on using 1Password CLI with CloudFuzz, visit:
+      https://github.com/trailofbits/cloudfuzz#configure-credentials
+    EOS
   end
 
   test do
