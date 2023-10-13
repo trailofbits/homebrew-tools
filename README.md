@@ -1,5 +1,5 @@
 # homebrew-tools
-Homebrew taps for internal use
+Homebrew tap for Trail of Bits tools
 
 ## Using
 
