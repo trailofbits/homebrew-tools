@@ -5,20 +5,20 @@
 class Cloudexec < Formula
   desc ""
   homepage "https://github.com/crytic/cloudexec"
-  version "0.1.2"
+  version "0.2.0"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/crytic/cloudexec/releases/download/v0.1.2/cloudexec-0.1.2-darwin-arm64.tar.gz"
-      sha256 "777f13a775db3b9ce5f3b7e4cc7d17e77a653784c0f17750ae7b9e5fae426b2d"
+      url "https://github.com/crytic/cloudexec/releases/download/v0.2.0/cloudexec-0.2.0-darwin-arm64.tar.gz"
+      sha256 "c23dc69c7764570f4dda47e306d3814abdfd511330e2f9557c35d1058c1e8b62"
 
       def install
         bin.install "cloudexec"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/crytic/cloudexec/releases/download/v0.1.2/cloudexec-0.1.2-darwin-amd64.tar.gz"
-      sha256 "f359f953148b4d6eac19673aa3fd159381f9ee8b9965899a2a29fd3004e2108d"
+      url "https://github.com/crytic/cloudexec/releases/download/v0.2.0/cloudexec-0.2.0-darwin-amd64.tar.gz"
+      sha256 "0a4874beb13784acb2bff9ee741444297d4ca21ad56fe03b479af78b382c5966"
 
       def install
         bin.install "cloudexec"
@@ -27,17 +27,17 @@ class Cloudexec < Formula
   end
 
   on_linux do
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/crytic/cloudexec/releases/download/v0.1.2/cloudexec-0.1.2-linux-arm64.tar.gz"
-      sha256 "c006ac931ce2cdcd5934450c44a41acebdba556ffb2a8eca50ee50795d11c0ca"
+    if Hardware::CPU.intel?
+      url "https://github.com/crytic/cloudexec/releases/download/v0.2.0/cloudexec-0.2.0-linux-amd64.tar.gz"
+      sha256 "038f9fb4fb8d4c9273d84672e40061d9545d796a05d90495dd62e2572d1a9d96"
 
       def install
         bin.install "cloudexec"
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/crytic/cloudexec/releases/download/v0.1.2/cloudexec-0.1.2-linux-amd64.tar.gz"
-      sha256 "442bbb352ae3f11b8de035b3d4e72c4453242bfcbd86fc78cb3065d86d17ed73"
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/crytic/cloudexec/releases/download/v0.2.0/cloudexec-0.2.0-linux-arm64.tar.gz"
+      sha256 "8d6f8b555544a16051c380d5fd19b41b5a202ae6ecbf4db7c195567453321a92"
 
       def install
         bin.install "cloudexec"
